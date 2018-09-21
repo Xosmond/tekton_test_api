@@ -2,7 +2,7 @@ class Sale < Movement
   validates :date, presence: true
   validates :code, presence: true, uniqueness: true, length: { maximum: 50 }
   validates :description, presence: true, length: { maximum: 300 }
-  validates :amount, presence: true
+  validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :currency, presence: true
 
   def set_box_amount(current_amount)

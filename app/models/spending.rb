@@ -4,7 +4,7 @@ class Spending < Movement
   validates :date, presence: true
   validates :code, presence: true, inclusion: { in: proc {CODES.map {|item| item[:code]}}, message: "%{value} is not a valid size" }
   validates :description, length: { maximum: 300 }
-  validates :amount, presence: true
+  validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :currency, presence: true
   validates :employee, presence: true, if: :is_payroll?
 
