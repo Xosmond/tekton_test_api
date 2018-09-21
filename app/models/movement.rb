@@ -24,7 +24,7 @@ class Movement < ApplicationRecord
 
   def set_box_amounts
     current_amount = Sale.where(currency_id: currency_id).sum(:amount) - Spending.where(currency_id: currency_id).sum(:amount)
-    current_all_amount = Sale.where(currency_id: currency_id).sum(:real_amount) - Spending.where(currency_id: currency_id).sum(:real_amount)
+    current_all_amount = Sale.sum(:real_amount) - Spending.sum(:real_amount)
     self.box_amount = set_box_amount(current_amount)
     self.box_all_amount = set_box_all_amount(current_all_amount)
   end
