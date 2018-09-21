@@ -63,7 +63,7 @@ RSpec.describe EmployeesController, type: :controller do
       context "with valid attributes" do
         it "update the employee" do
           new_attributes = attributes_for(:employee)
-          put_request(:update, {id: @employee.id, employee: new_attributes})
+          put :update, params: {id: @employee.id, employee: new_attributes}
           @employee.reload
           expect(@employee.doc).to eq(new_attributes[:doc])
           expect(@employee.names).to eq(new_attributes[:names])
@@ -80,7 +80,7 @@ RSpec.describe EmployeesController, type: :controller do
 
       context "with invalid attributes" do
         it "returns 400 status" do
-          put_request(:update, {id: @employee.id, employee: {names: nil}})
+          put :update, params: {id: @employee.id, employee: {names: nil}}
           expect(response.status).to eq(400)
         end
         it "returns the errors" do
@@ -118,20 +118,5 @@ RSpec.describe EmployeesController, type: :controller do
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
-  end
-
-  def get_request(action, params = {})
-    get action, params: params
-    JSON.parse(response.body)
-  end
-
-  def post_request(action, params = {})
-    post action, params: params
-    JSON.parse(response.body)
-  end
-
-  def put_request(action, params = {})
-    put action, params: params
-    JSON.parse(response.body)
   end
 end

@@ -9,7 +9,7 @@ class Employee < ApplicationRecord
   validates :birth_date, presence: true
 
   def full_name
-    this.names + ", " + this.last_names
+    self.names + ", " + self.last_names
   end
 
   def active
