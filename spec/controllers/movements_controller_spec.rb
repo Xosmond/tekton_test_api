@@ -14,7 +14,7 @@ RSpec.describe MovementsController, type: :controller do
   describe "GET #index" do
     it "renders a list of movements" do
       get :index
-      expect(response.body).to eq({movements: [@movement], count: 1}.to_json)
+      expect(response.body).to eq({movements: [JSON.parse(@movement.to_json(include: :currency))], count: 1}.to_json)
     end
   end
 
