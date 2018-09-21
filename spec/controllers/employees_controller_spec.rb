@@ -8,7 +8,7 @@ RSpec.describe EmployeesController, type: :controller do
   describe "GET #index" do
     it "renders a list of employees" do
       get :index
-      expect(response.body).to eq({employees: [@employee]}.to_json)
+      expect(response.body).to eq({employees: [@employee], count: 1}.to_json)
     end
   end
 
