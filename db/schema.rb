@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_024155) do
     t.string "names", null: false
     t.string "last_names", null: false
     t.datetime "birth_date", null: false
-    t.datetime "admission_date", default: "2018-09-21 14:03:19", null: false
+    t.datetime "admission_date", default: "2018-09-21 16:52:32", null: false
     t.datetime "exit_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,8 +41,11 @@ ActiveRecord::Schema.define(version: 2018_09_20_024155) do
     t.string "description"
     t.string "type"
     t.decimal "amount", null: false
-    t.decimal "rate", null: false
+    t.decimal "real_amount", null: false
+    t.decimal "box_amount", null: false
+    t.decimal "box_all_amount", null: false
     t.bigint "currency_id", null: false
+    t.decimal "rate", null: false
     t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
