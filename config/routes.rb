@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :movements, only: [:index] do
     post :spending, on: :collection
     post :sale, on: :collection
+    get :spending_codes, on: :collection
   end
 end
