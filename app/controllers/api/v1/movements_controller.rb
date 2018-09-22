@@ -1,4 +1,4 @@
-class MovementsController < ApplicationController
+class Api::V1::MovementsController < ApplicationController
   def index
     if params[:start] && params[:end]
       start_date = params[:start].to_datetime.start_of_day

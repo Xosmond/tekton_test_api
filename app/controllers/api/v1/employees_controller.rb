@@ -1,4 +1,4 @@
-class EmployeesController < ApplicationController
+class Api::V1::EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :update, :destroy]
   def index
     employees = Employee.all.page params[:page]
