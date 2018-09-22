@@ -5,6 +5,11 @@ class EmployeesController < ApplicationController
     render json: { employees: employees, count: Employee.count }
   end
 
+  def all
+    employees = Employee.all
+    render json: { employees: employees }
+  end
+
   def show
     render json: { employee: @employee }
   end

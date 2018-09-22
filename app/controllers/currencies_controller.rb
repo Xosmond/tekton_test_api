@@ -5,6 +5,11 @@ class CurrenciesController < ApplicationController
     render json: { currencies: currencies, count: Currency.count }
   end
 
+  def all
+    currencies = Currency.all
+    render json: { currencies: currencies }
+  end
+
   def show
     render json: { currency: @currency }
   end
