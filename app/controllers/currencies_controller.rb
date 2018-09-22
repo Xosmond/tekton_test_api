@@ -32,9 +32,14 @@ class CurrenciesController < ApplicationController
   end
 
   def destroy
-    if @currency.destroy
-      head 200
+    if @currency.sales.count == 0 && @currency.spendings.count == 0
+      if @currency.destroy
+        head 200
+      else
+        render json: {errors: @currency.errors}, status: 400
+      end
     else
+      @currency.errors["General"] << "This currency has movements already relationed."
       render json: {errors: @currency.errors}, status: 400
     end
   end

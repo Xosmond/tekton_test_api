@@ -110,6 +110,16 @@ RSpec.describe CurrenciesController, type: :controller do
         delete :destroy, params: {id: @currency.id}
         expect(response.status).to eq(200)
       end
+      it "returns 400 status when currency has movements" do
+        @movement = Movement.new attributes_for(:sale, type: "Sale", currency_id: @currency.id)
+        @movement.set_rate
+        @movement.set_real_amount
+        @movement.set_box_amounts
+        @movement.save!
+        delete :destroy, params: {id: @currency.id}
+        expect(response.status).to eq(400)
+        expect(JSON.parse(response.body)["errors"]["base"]).not_to be_nil
+      end
     end
     context "with invalid id" do
       it "returns 404" do
