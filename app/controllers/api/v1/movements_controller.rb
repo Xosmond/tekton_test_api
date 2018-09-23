@@ -1,7 +1,7 @@
 class Api::V1::MovementsController < ApplicationController
   def index
     if params[:start] && params[:end]
-      start_date = params[:start].to_datetime.start_of_day
+      start_date = params[:start].to_datetime.beginning_of_day
       end_date = params[:end].to_datetime.end_of_day
       movements = Movement.where(created_at: start_date..end_date).order(created_at: :desc).page params[:page]
     else
