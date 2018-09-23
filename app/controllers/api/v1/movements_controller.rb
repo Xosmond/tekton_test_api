@@ -3,9 +3,9 @@ class Api::V1::MovementsController < ApplicationController
     if params[:start] && params[:end]
       start_date = params[:start].to_datetime.beginning_of_day
       end_date = params[:end].to_datetime.end_of_day
-      movements = Movement.where(created_at: start_date..end_date).order(created_at: :desc).page params[:page]
+      movements = Movement.where(created_at: start_date..end_date).includes(:currency).order(created_at: :desc).page params[:page]
     else
-      movements = Movement.all.order(created_at: :desc).page params[:page]
+      movements = Movement.all.includes(:currency).order(created_at: :desc).page params[:page]
     end
     render json: { movements: JSON.parse(movements.to_json(include: :currency)), count: Movement.count }
   end
