@@ -32,9 +32,14 @@ class Api::V1::EmployeesController < ApplicationController
   end
 
   def destroy
-    if @employee.destroy
-      head 200
+    if @employee.spendings.count == 0
+      if @employee.destroy
+        head 200
+      else
+        render json: {errors: @employee.errors}, status: 400
+      end
     else
+      @employee.errors["General"] << "This employee has payrolls already relationed."
       render json: {errors: @employee.errors}, status: 400
     end
   end
